@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"></head>
+<body>
+<script>
+// Page de démarrage auth Teams
+// Redirige vers Microsoft login, qui reviendra sur auth-end.html
+const CLIENT_ID = '5fcf58b8-59cd-475d-8702-906551b4aa8c';
+const TENANT_ID = '9b6f0a5e-fd44-4a3f-a1de-430911fda398';
+const REDIRECT  = 'https://laurentallsi.github.io/activite-ventes/auth-end.html';
+const SCOPES    = 'User.Read Files.ReadWrite';
+
+const params = new URLSearchParams({
+  client_id:     CLIENT_ID,
+  response_type: 'token',
+  response_mode: 'fragment',
+  scope:         SCOPES,
+  redirect_uri:  REDIRECT,
+  nonce:         Math.random().toString(36).slice(2),
+  state:         'teams_auth'
+});
+
+window.location.href = `https://login.microsoftonline.com/${TENANT_ID}/oauth2/v2.0/authorize?${params}`;
+</script>
+</body>
+</html>
